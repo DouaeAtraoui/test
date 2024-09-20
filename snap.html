@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Great!</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #e0f7fa;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            animation: backgroundAnimation 10s infinite alternate;
+        }
+        
+        @keyframes backgroundAnimation {
+            0% { background-color: #e0f7fa; }
+            100% { background-color: #ffebee; }
+        }
+
+        h1 {
+            color: #ff4081;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+            font-size: 2.5em;
+        }
+        
+        img {
+            width: 120px;
+            height: 120px;
+            margin: 20px;
+            border-radius: 50%;
+            transition: opacity 0.1s ease; /* Faster transition */
+            opacity: 1;
+        }
+        
+        .hidden {
+            opacity: 0; /* Hide image */
+        }
+
+        .button-container {
+            display: flex;
+            gap: 20px; /* Space between buttons */
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            background-color: #ff5c5c;
+            color: white;
+            border-radius: 25px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        
+        button:hover {
+            background-color: #ff1744;
+            transform: scale(1.1);
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+    </style>
+</head>
+<body>
+    <h1 id="mainTitle">Send me a Snap !!</h1>
+    <img id="mainImage" src="https://cdn-icons-png.flaticon.com/512/7863/7863349.png" alt="Cute Rabbit">
+    <div class="button-container">
+        <button id="Ok">Ok</button>
+        <button id="yesButton">No</button>
+    </div>
+
+    <script>
+        const okButton = document.getElementById('Ok');
+        const noButton = document.getElementById('yesButton');
+        const mainImage = document.getElementById('mainImage');
+        const mainTitle = document.getElementById('mainTitle');
+
+        // Function to change image and hide buttons
+        okButton.addEventListener('click', function() {
+            mainImage.classList.add('hidden'); // Start fade out
+            setTimeout(() => {
+                // Change image to celebration PNG
+                mainImage.src = "https://cdn-icons-png.flaticon.com/512/13474/13474427.png"; // Use the correct PNG URL
+                mainImage.classList.remove('hidden'); // Remove hidden class to fade in
+            }, 100); // Shorter wait time for image change
+            // Change title to "Great!"
+            mainTitle.textContent = "Great!";
+            // Hide both buttons
+            okButton.style.display = 'none';
+            noButton.style.display = 'none';
+        });
+
+        noButton.addEventListener('click', function() {
+            const x = Math.random() * (window.innerWidth - noButton.offsetWidth);
+            const y = Math.random() * (window.innerHeight - noButton.offsetHeight);
+            noButton.style.position = 'absolute';
+            noButton.style.left = `${x}px`;
+            noButton.style.top = `${y}px`;
+        });
+    </script>
+</body>
+</html>
+
